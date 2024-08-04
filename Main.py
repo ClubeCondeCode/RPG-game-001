@@ -27,9 +27,29 @@ if save == '2':
 #--------------------------------------------------------------------------------------
 
 
-slime = slime[0]
+slime_1 = slime[0]
+slime_2 = slime[1]
+slime_3 = slime[2]
+print(status(jogador))
 
-batalha(jogador, slime)
+batalha(jogador, slime_1)
+
+
+arma(jogador)
+jogador = upar(player1)
+
+print(status(jogador))
+
+batalha(jogador, slime_2)
+
+jogador = upar(player1)
+
+print(status(jogador))
+
+batalha(jogador, slime_3)
+
+
+
 
 
 

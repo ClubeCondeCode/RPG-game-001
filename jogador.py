@@ -1,5 +1,6 @@
 from random import randrange
 from time import sleep
+from math import trunc
 import json
 
 def salvar(fix, var):
@@ -84,9 +85,26 @@ def upar(player):
     'inventario': inv
         }
         
-        if player['andar'] >= 4:
-            if player[raca] == 'Elfo':
+        if player['andar'] >= 2:
+            if player['raca'] == 'Humano':
+                status['ataques'] = {'soco': 1, 'espadada':2, '--': 1, '---': 1}
+            if player['raca'] == 'Orc':
+                status['ataques'] = {'soco': 1, 'golpe pesado':2, '--': 1, '---': 1}
+
+        if player['andar'] >= 5:
+            if player['raca'] == 'Elfo':
                 status['ataques'] = {'soco': 1, 'atirar':2, 'magia de fogo': 3, '---': 1}
+            if player['raca'] == 'Orc':
+                status['ataques'] = {'soco': 1, 'golpe pesado':2, 'golpe cortante': 3, '---': 1}
+
+        if player['andar'] >= 7:
+            if player['raca'] == 'Orc':
+                status['ataques'] = {'soco': 1, 'golpe pesado':2, 'golpe cortante': 3, 'Golpe gigante': 4}
+            if player['raca'] == 'Humano':
+                status['ataques'] = {'soco': 1, 'espadada':2, 'espadada concentrada': 3, '---': 1}
+
+        if player['andar'] >= 10:
+            print()
 
         salvar(status, status)
 
@@ -123,10 +141,10 @@ def status(player):
 nome:        {player['nome']}
 andar:       {player['andar']}
 raça:        {player['raca']}
-hp:          {int(player['hp'])}
-ataque:      {int(player['atk'])}
-defesa:      {int(player['defe'])}
-velocidade:  {int(player['speed'])}
+hp:          {trunc(player['hp'])}
+ataque:      {trunc(player['atk'])}
+defesa:      {trunc(player['defe'])}
+velocidade:  {trunc(player['speed'])}
 equipamentos: {[c for c in player['equip']]}
 """
     return texto
@@ -176,11 +194,11 @@ def batalha(player, monstro):
                                 print('o jogador recuperou 20 de hp! ')
                     if acao == 3:
                         chance = randrange(0, 100)
-                    if chance >= 80:
-                        print("você tentou fugir e... você fugiu!")
-                        break
-                    if chance < 80:
-                        print("você tentou fugir e... não conseguiu!")
+                        if chance >= 80:
+                            print("você tentou fugir e... você fugiu!")
+                            break
+                        if chance < 80:
+                            print("você tentou fugir e... não conseguiu!")
                         
 
                     player['hp'] -= tomar_dano(player, monstro)
