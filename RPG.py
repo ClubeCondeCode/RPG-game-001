@@ -1,4 +1,4 @@
-from personagem import playerStatus
+from jogador import playerStatus
 
 print('\033[32mBem vindo ao mundo de\033[0m \'\033[1m\033[31mA Descida do Abismo\033[0m\033[0m\' ')
 
