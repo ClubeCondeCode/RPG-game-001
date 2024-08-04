@@ -1,4 +1,19 @@
 from random import randrange
+from time import sleep
+import json
+
+def salvar(fix, var):
+    save1 = open("save1.json", "wt")
+    save2 = open("save2.json", "wt")
+
+    json.dump(fix, save1)
+    json.dump(var, save2)
+
+def carregar(file):
+        valor = open(file, "r")
+        save = json.load(valor)
+        return save
+
 
 def player(andar = 1):
         nome = str(input('Digite seu nome: ')).strip().capitalize()
@@ -14,20 +29,24 @@ def player(andar = 1):
             atk = randrange(4, 7)
             defe = randrange(2, 5)
             speed = randrange(3, 8)
+            raca = 'Humano'
         if raca == 2:
             hp = randrange(19, 25)
             atk = randrange(7, 11)
             defe = randrange(4, 7)
             speed = randrange(1, 5)
+            raca = 'Orc'
         if raca == 3:
             hp = randrange(12, 17)
             atk = randrange(5, 9)
             defe = randrange(1, 4)
             speed = randrange(7, 11)
+            raca = 'Elfo'
 
 
         status = {
         'nome': nome,
+        'raca': raca,
         'hp': hp,
         'atk': atk,
         'defe': defe,
@@ -47,24 +66,29 @@ def player(andar = 1):
 def upar(player):
         inv = player['inventario']
         equip = player['equip']
+        raca = player['raca']
+        ataques = player['ataques']
 
         player['andar'] += 1
 
         status = {
     'nome':player['nome'],
-    'hp':player['hp'] + player['andar'] * 1.5,
-    'atk':player['atk'] + player['andar'] * 1.5,
-    'defe':player['defe'] + player['andar'] * 1.5,
-    'speed':player['speed'] + player['andar'] * 1.5,
+    'hp':player['hp'] + player['hp'] * 0.5,
+    'raca': raca,
+    'atk':player['atk'] + player['atk'] * 0.5,
+    'defe':player['defe'] + player['defe'] * 0.5,
+    'speed':player['speed'] + player['speed'] * 0.5,
     'andar': player['andar'],
-    'ataques': {'soco': 1, '-':1, '--':1, '---':1},
+    'ataques': ataques,
     'equip': equip,
     'inventario': inv
         }
-
+        
         if player['andar'] >= 4:
-            status['andar'] = {'soco': 1, 'chute':2, '--': 1, '---': 1}
+            if player[raca] == 'Elfo':
+                status['ataques'] = {'soco': 1, 'atirar':2, 'magia de fogo': 3, '---': 1}
 
+        salvar(status, status)
 
 
         return status
@@ -96,11 +120,13 @@ def mais_rapido(player, monstro):
 
 def status(player):
     texto = f"""
+nome:        {player['nome']}
 andar:       {player['andar']}
-hp:          {player['hp']}
-ataque:      {player['atk']}
-defesa:      {player['defe']}
-velocidade:  {player['speed']}
+raça:        {player['raca']}
+hp:          {int(player['hp'])}
+ataque:      {int(player['atk'])}
+defesa:      {int(player['defe'])}
+velocidade:  {int(player['speed'])}
 equipamentos: {[c for c in player['equip']]}
 """
     return texto
@@ -150,9 +176,12 @@ def batalha(player, monstro):
                                 print('o jogador recuperou 20 de hp! ')
                     if acao == 3:
                         chance = randrange(0, 100)
-                        if chance >= 80:
-                            print('você fugiu! ')
-                            break
+                    if chance >= 80:
+                        print("você tentou fugir e... você fugiu!")
+                        break
+                    if chance < 80:
+                        print("você tentou fugir e... não conseguiu!")
+                        
 
                     player['hp'] -= tomar_dano(player, monstro)
                     print(f"você tomou {tomar_dano(player, monstro)} de dano")
@@ -190,12 +219,21 @@ def batalha(player, monstro):
                 if acao == 3:
                     chance = randrange(0, 100)
                     if chance >= 80:
-                        print('você fugiu! ')
+                        print("você tentou fugir e...", end=' ')
+
+                        sleep(1)
+
+                        print("você fugiu!")
                         break
-                
+                    if chance < 80:
+                        print("você tentou fugir e...", end=' ')
+                        sleep(1)
+                        print("não conseguiu!")
 
                 
-                     
+'''
+
+'''
                 
 
 
