@@ -1,1 +1,1 @@
-{"nome": "Joao", "hp": 19, "atk": 4, "defe": 3, "speed": 7, "andar": 1, "ataques": {"soco": 1}}
+{"nome": "Joao", "hp": 24, "atk": 10, "defe": 4, "speed": 1, "andar": 1, "ataques": {"soco": 1, "-": 1, "--": 1, "---": 1}, "equip": [], "inventario": []}
