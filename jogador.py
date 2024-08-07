@@ -2,6 +2,7 @@ from random import randrange
 from time import sleep
 from math import trunc
 import json
+from andares import clear
 
 def salvar(fix, var):
     save1 = open("save1.json", "wt")
@@ -152,7 +153,7 @@ equipamentos: {[c for c in player['equip']]}\033[0m
 
 
 def batalha(player, monstro):
-    print(f"você encontrou um {monstro['nome']}")
+    print(f"\033[0;30;40mvocê encontrou um \033[0;36;40m{monstro['nome']}\033[0m")
     while True:   
         primeiro = mais_rapido(player, monstro)
 
@@ -167,6 +168,7 @@ def batalha(player, monstro):
 
             if primeiro == player:
                     acao = int(input(f"Oque você ira fazer? \n[1] atacar \n[2] usar item \n[3] fugir\nDigite aqui: "))
+                    clear()
 
                     if acao == 1:
                         ataque = input(f'qual ataque você usara? \n{list(player['ataques'].keys())[0]} \n{list(player['ataques'].keys())[1]} \n{list(player['ataques'].keys())[2]} \n{list(player['ataques'].keys())[3]} \nDigite aqui: ')
@@ -186,13 +188,24 @@ def batalha(player, monstro):
                             print('qual item você usara? ')
                             for c, i in enumerate(player['inventario']):
                                 print(f'{c} - {i}')
-                            item = int(input('digite aqui: '))
-                            item = player['inventario'][item]
+
+                            item_num = int(input('digite aqui: '))
+                            item = player['inventario'][item_num]
 
                             print(f'você usou {item}!')
                             if item == 'poção':
                                 player['hp'] += 20
                                 print('o jogador recuperou 20 de hp! ')
+                                player['inventario'].pop(item_num)
+
+                            if item == 'gosma de slime':
+                                player['hp'] += 5
+                                print('o jogador recuperou 5 de hp! ')
+                                player['inventario'].pop(item_num)
+
+                    print(f'você esta com {player['hp']}')
+
+
                     if acao == 3:
                         chance = randrange(0, 100)
                         if chance >= 80:

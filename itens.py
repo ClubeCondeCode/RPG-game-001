@@ -157,3 +157,8 @@ def ultima(player):
             if player['hp'] > 0:
                 print(f'parabens {player['nome']}! você despertou seu potencial, os deuses veem em você o merecedor de tal poder, parabens!')
                 player['ataques'] = {'soco': 1, 'atirar':2, 'magia de fogo': 3, 'ULTIMA': 5}
+
+def gosma(player):
+    print('o slime se despedaçou e seus pedaços gosmentos parecem cosmetiveis')
+    print('você recebeu: gosma de slime!')
+    player['inventario'].append('poção')
