@@ -138,6 +138,7 @@ def mais_rapido(player, monstro):
 
 def status(player):
     texto = f"""
+\033[0;37;40m
 nome:        {player['nome']}
 andar:       {player['andar']}
 raça:        {player['raca']}
@@ -145,7 +146,7 @@ hp:          {trunc(player['hp'])}
 ataque:      {trunc(player['atk'])}
 defesa:      {trunc(player['defe'])}
 velocidade:  {trunc(player['speed'])}
-equipamentos: {[c for c in player['equip']]}
+equipamentos: {[c for c in player['equip']]}\033[0m
 """
     return texto
 

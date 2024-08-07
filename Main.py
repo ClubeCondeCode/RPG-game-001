@@ -1,7 +1,8 @@
-
+from time import sleep
 from random import randrange
 import json
 
+from andares import clear
 from monstros import slime
 from jogador import player, upar, batalha, status, salvar, carregar
 from itens import arma, escudo
@@ -30,7 +31,16 @@ if save == '2':
 slime_1 = slime[0]
 slime_2 = slime[1]
 slime_3 = slime[2]
-print(status(jogador))
+
+if jogador['andar'] == 1:
+    print(f'\033[0;30;40mbem vindo \033[0;32;40m{jogador['nome']}\033[0m\033[0;30;40m! você é um soldado do exercito que foi enviado a essa dungeon em busca de tesouros e poder!')
+    sleep(3)
+    print(f'\033[0;30;40mseus status são: {status(jogador)}')
+    clear()
+
+    
+
+'''print(status(jogador))
 
 batalha(jogador, slime_1)
 
@@ -47,7 +57,7 @@ jogador = upar(player1)
 print(status(jogador))
 
 batalha(jogador, slime_3)
-
+'''
 
 
 

@@ -138,26 +138,22 @@ def botas(player):
                 player['speed'] += 195
                 player['equip'].append('botas de trovão')
 
-'''def ultima(player):
+def ultima(player):
     raca = player['raca']
     match raca:
         case 'Humano':
             if player['hp'] > 0:
-                print(f'parabens {player['nome']}! você encontrou botas! \n+200 de velocidade')
-                player['speed'] += 200
-                player['equip'].append('botas')
+                print(f'parabens {player['nome']}! você despertou seu potencial, sua espada queima e o fogo de sua espada ilumina seu rosto, parabens!')
+                player['ataques'] = {'soco': 1, 'espadada':2, 'espadada concentrada': 3, 'corte do amanhecer': 4}
+                
             
         case 'Orc':
             if player['hp'] > 0:
-                print(f'parabens {player['nome']}! você encontrou botas infernais! \n+100 de hp\n+40 de defesa\n+60 de velocidade')
-                player['hp'] += 100
-                player['defe'] += 40
-                player['speed'] += 60
-                player['equip'].append('botas infernais')     
+                print(f'parabens {player['nome']}! você despertou seu potencial, sua irá domina todo o seu corpo, você se sente controlado pela raiva, parabens!')
+                player['ataques'] = {'irá de deuses': 5, 'irá de deuses': 5, 'irá de deuses': 5, 'irá de deuses': 5}
+   
 
         case 'Elfo':
             if player['hp'] > 0:
-                print(f'parabens {player['nome']}! você encontrou botas de trovão! \n+5 de hp\n+195 de velocidade')
-                player['hp'] += 5
-                player['speed'] += 195
-                player['equip'].append('botas de trovão')'''
+                print(f'parabens {player['nome']}! você despertou seu potencial, os deuses veem em você o merecedor de tal poder, parabens!')
+                player['ataques'] = {'soco': 1, 'atirar':2, 'magia de fogo': 3, 'ULTIMA': 5}
