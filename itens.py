@@ -161,4 +161,4 @@ def ultima(player):
 def gosma(player):
     print('o slime se despedaçou e seus pedaços gosmentos parecem cosmetiveis')
     print('você recebeu: gosma de slime!')
-    player['inventario'].append('poção')
+    player['inventario'].append('gosma de slime')
